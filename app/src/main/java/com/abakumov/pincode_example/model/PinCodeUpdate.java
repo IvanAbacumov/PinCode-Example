@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.abakumov.pincode_example.R;
+import com.abakumov.pincode_example.asynctask.AsyncTaskVerification;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -13,11 +14,12 @@ import java.util.TimerTask;
 public class PinCodeUpdate implements  PinCodeState {
 
     ArrayList<PinCodeModel> pinCodeModelArrayList;
-    ArrayList<String> arrayListPINcode;
+    ArrayList<String> arrayListPINcode =  new ArrayList<>();
     Resources resources;
     int count = 0;
 
-    //Handler handler;
+
+    AsyncTaskVerification asyncTaskVerification;
 
     public PinCodeUpdate(ArrayList<PinCodeModel> pinCodeModelArrayList, Resources resources) {
         this.pinCodeModelArrayList = pinCodeModelArrayList;
@@ -26,16 +28,18 @@ public class PinCodeUpdate implements  PinCodeState {
 
     @Override
     public void onSetClickNumber(String number) {
-        Log.d("asdasdasdasd", number);
-        arrayListPINcode = new ArrayList<>();
         arrayListPINcode.add(number);
         count++;
-        if(count > 4){
-            for (int i = 0; i < pinCodeModelArrayList.size(); i++) {
+        if(count == 4){
+            pinCodeModelArrayList.get(count - 1).getImageView().setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
+            pinCodeModelArrayList.get(count - 1).setBooleanOnOff(true);
+            asyncTaskVerification = new AsyncTaskVerification(arrayListPINcode, pinCodeModelArrayList, resources);
+            asyncTaskVerification.execute();
+          /*  for (int i = 0; i < pinCodeModelArrayList.size(); i++) {
                 pinCodeModelArrayList.get(i).getImageView().setImageDrawable(resources.getDrawable(R.mipmap.oval));
                 pinCodeModelArrayList.get(i).setBooleanOnOff(false);
-            }
-            count = 0;
+            }*/
+          count = 0;
         }
         else {
             pinCodeModelArrayList.get(count - 1).getImageView().setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
