@@ -14,79 +14,92 @@
         android:textSize="40dp"
         android:textColor="@color/black"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="@id/textPIN_code"
+        app:layout_constraintBottom_toBottomOf="@id/test"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textPIN_code"
+    <LinearLayout
+        android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ПИН-код или Fingerprint"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/linearLayoutPin"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/btn_2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/logotype" />
+        app:layout_constraintTop_toTopOf="@id/logotype" >
 
-
-    <LinearLayout
-        android:id="@+id/linearLayoutPin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/btn_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textPIN_code">
-
-        <ImageView
-            android:id="@+id/num1"
+        <TextView
+            android:id="@+id/textPIN_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/oval"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            app:layout_constraintVertical_bias="0.25" />
+            android:layout_marginBottom="8dp"
+            android:text="ПИН-код или Fingerprint"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/linearLayoutPin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/logotype" />
 
-        <ImageView
-            android:id="@+id/num2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/oval"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            app:layout_constraintVertical_bias="0.25" />
 
-        <ImageView
-            android:id="@+id/num3"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayoutPin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/oval"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            app:layout_constraintVertical_bias="0.25" />
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/btn_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textPIN_code">
 
-        <ImageView
-            android:id="@+id/num4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/oval"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            app:layout_constraintVertical_bias="0.25" />
+            <ImageView
+                android:id="@+id/num1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/oval"
+                android:layout_marginRight="12dp"
+                app:layout_constraintVertical_bias="0.25" />
+
+            <ImageView
+                android:id="@+id/num2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/oval"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                app:layout_constraintVertical_bias="0.25" />
+
+            <ImageView
+                android:id="@+id/num3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/oval"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                app:layout_constraintVertical_bias="0.25" />
+
+            <ImageView
+                android:id="@+id/num4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/oval"
+                android:layout_marginLeft="12dp"
+                app:layout_constraintVertical_bias="0.25" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
 
 <LinearLayout
     android:id="@+id/linearLayoutSupport"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    app:layout_constraintBottom_toBottomOf="@id/linearLayoutPin"
+    app:layout_constraintBottom_toBottomOf="@id/test"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"/>
@@ -98,8 +111,9 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="1"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
+        android:textStyle="normal"
         android:onClick="onClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_4"
         app:layout_constraintEnd_toStartOf="@+id/btn_2"
@@ -114,7 +128,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="4"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
         android:onClick="onClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_7"
@@ -129,7 +143,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="7"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
         android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -145,7 +159,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="2"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
         android:onClick="onClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_5"
@@ -161,7 +175,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="5"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
         android:onClick="onClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_8"
@@ -176,7 +190,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="8"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
         android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -192,7 +206,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="3"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
         android:onClick="onClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_6"
@@ -208,7 +222,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="6"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
         android:onClick="onClick"
         app:layout_constraintBottom_toTopOf="@+id/btn_9"
@@ -223,7 +237,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:text="9"
-        android:textSize="22dp"
+        android:textSize="24dp"
         android:typeface="monospace"
         android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -236,18 +250,28 @@
         android:id="@+id/btn_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:text="0"
-        android:textSize="22dp"
-        android:typeface="monospace"
         android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="0"
+        android:textSize="24dp"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_8"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintTop_toTopOf="@+id/btn_8"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:onClick="onClick"
+        android:drawableStart="@mipmap/delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_0"
+        app:layout_constraintTop_toTopOf="@+id/btn_9" />
 
 
     <Button

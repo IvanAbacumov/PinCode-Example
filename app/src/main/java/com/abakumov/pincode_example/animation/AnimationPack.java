@@ -1,6 +1,6 @@
 package com.abakumov.pincode_example.animation;
 
-import android.view.View;
+
 import android.widget.LinearLayout;
 
 // for Animation effect "Spring"
@@ -23,20 +23,14 @@ public class AnimationPack {
         springForce = new SpringForce();
 
 
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        springForce.setFinalPosition(linearLayout.getX());
+        springForce.setDampingRatio(SpringForce.DAMPING_RATIO_HIGH_BOUNCY);
+        springForce.setStiffness(1200f);
 
-                springForce.setFinalPosition(linearLayout.getX());
-                springForce.setDampingRatio(SpringForce.DAMPING_RATIO_HIGH_BOUNCY);
-                springForce.setStiffness(1200f);
+        springAnimation.setSpring(springForce);
 
-                springAnimation.setSpring(springForce);
-
-                springAnimation.setStartVelocity(4000f);
-                springAnimation.start();
-            }
-        });
+        springAnimation.setStartVelocity(4000f);
+        springAnimation.start();
     }
 }
 

@@ -18,184 +18,111 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abakumov.pincode_example.animation.AnimationPack;
-import com.abakumov.pincode_example.model.PinCodeModel;
-import com.abakumov.pincode_example.model.PinCodeState;
 import com.abakumov.pincode_example.model.PinCodeUpdate;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // for UI
     LinearLayout linearLayout;
+    TextView logotype;
+    Typeface customFont;
     ImageView imageViewNum1, imageViewNum2, imageViewNum3, imageViewNum4;
-    Resources res;
 
-    // for Animation
-    AnimationPack animationPack;
 
-    ArrayList<String> arrayListPINcode;
-    ArrayList<PinCodeModel> pinCodeModelArrayList;
+    // for set Image
+    Resources resources;
 
-    PinCodeModel a1, a2, a3, a4;
+    // for list(PIN-code) and list(Image)
+    ArrayList<String> listPINcode;
+    ArrayList<ImageView> listImageView;
+
+
+    // for set full PIN-code(****)
     PinCodeUpdate pinCodeUpdate;
 
-    int count = 0;
+
+    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_main);
-          arrayListPINcode = new ArrayList<>();
-          pinCodeModelArrayList = new ArrayList<>();
-
-         res = getResources();
-
           linearLayout = findViewById(R.id.linearLayoutPin);
           imageViewNum1= findViewById(R.id.num1);
           imageViewNum2= findViewById(R.id.num2);
           imageViewNum3= findViewById(R.id.num3);
           imageViewNum4= findViewById(R.id.num4);
 
+          // add font for main title
+          logotype = findViewById(R.id.logotype);
+          installFont(logotype);
 
+          // for Animation
+          resources = getResources();
 
+          // initial list for numbers(PIN-code)
+          listPINcode = new ArrayList<>();
+          // initial list for ImageView
+          listImageView= new ArrayList<>();
+          // add ImageView in list
+          listImageView.add(imageViewNum1);
+          listImageView.add(imageViewNum2);
+          listImageView.add(imageViewNum3);
+          listImageView.add(imageViewNum4);
 
-          a1 = new PinCodeModel(imageViewNum1, false);
-          a2 = new PinCodeModel(imageViewNum2, false);
-          a3 = new PinCodeModel(imageViewNum3, false);
-          a4 = new PinCodeModel(imageViewNum4, false);
-
-
-
-        pinCodeModelArrayList.add(a1);
-        pinCodeModelArrayList.add(a2);
-        pinCodeModelArrayList.add(a3);
-        pinCodeModelArrayList.add(a4);
-
-
-
-        pinCodeUpdate = new PinCodeUpdate(pinCodeModelArrayList, res);
-
-
-        // add font for main title
-        TextView tx = findViewById(R.id.logotype);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/Lato-Bold.ttf");
-        tx.setTypeface(custom_font);
-
-
-
-          // initial class AnimationPack and start method for "Spring" animation
-          animationPack = new AnimationPack(linearLayout);
-          animationPack.startSpringAnimation();
-
+          // send listImageView and resources(for animation)
+          pinCodeUpdate = new PinCodeUpdate(listImageView, resources, linearLayout);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
 
-    }
-
-    /*
-    public void collectPINcode(String number, int count_test){
-        arrayListPINcode.add(number);
-        Resources res = getResources();
-        if(count_test!=0 && count_test<=4){
-            pinCodeModelArrayList.get(count_test-1).getImageView().setImageDrawable(res.getDrawable(R.mipmap.ovalfull));
-            pinCodeModelArrayList.get(count_test-1).setBooleanOnOff(true);
-        }
-        else if(count_test>=5){
-            for(int i = 0;i<pinCodeModelArrayList.size(); i++){
-                pinCodeModelArrayList.get(i).getImageView().setImageDrawable(res.getDrawable(R.mipmap.oval));
-                pinCodeModelArrayList.get(i).setBooleanOnOff(false);
-            }
-            count = 0;
-        }
-        else{
-          /*  for(int i = 0;i<pinCodeModelArrayList.size(); i++){
-                pinCodeModelArrayList.get(i).getImageView().setImageDrawable(res.getDrawable(R.mipmap.oval));
-                pinCodeModelArrayList.get(i).setBooleanOnOff(false);
-            } */
-       /* }
-
-
-    } */
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        Toast toast;
         switch (id) {
             case R.id.btn_1:
-                toast = Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("1", count);
-                pinCodeUpdate.onSetClickNumber("1");
+                addNumber("1");
                 break;
             case R.id.btn_2:
-                toast = Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("2", count);
-                pinCodeUpdate.onSetClickNumber("2");
+                addNumber("2");
                 break;
             case R.id.btn_3:
-                toast = Toast.makeText(getApplicationContext(), "3", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("3", count);
-                pinCodeUpdate.onSetClickNumber("3");
+                addNumber("3");
                 break;
             case R.id.btn_4:
-                toast = Toast.makeText(getApplicationContext(), "4", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("4", count);
-                pinCodeUpdate.onSetClickNumber("4");
+                addNumber("4");
                 break;
             case R.id.btn_5:
-                toast = Toast.makeText(getApplicationContext(), "5", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("5", count);
-                pinCodeUpdate.onSetClickNumber("5");
+                addNumber("5");
                 break;
             case R.id.btn_6:
-                toast = Toast.makeText(getApplicationContext(), "6", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("6", count);
-                pinCodeUpdate.onSetClickNumber("6");
+                addNumber("6");
                 break;
             case R.id.btn_7:
-                toast = Toast.makeText(getApplicationContext(), "7", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("7", count);
-                pinCodeUpdate.onSetClickNumber("7");
+                addNumber("7");
                 break;
             case R.id.btn_8:
-                toast = Toast.makeText(getApplicationContext(), "8", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("8", count);
-                pinCodeUpdate.onSetClickNumber("8");
+                addNumber("8");
                 break;
             case R.id.btn_9:
-                toast = Toast.makeText(getApplicationContext(), "9", Toast.LENGTH_SHORT);
-                toast.show();
-                count++;
-                //collectPINcode("9", count);
-                pinCodeUpdate.onSetClickNumber("9");
+                addNumber("9");
                 break;
             case R.id.btn_0:
-                toast = Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_SHORT);
-                toast.show();
-                //collectPINcode("0", count);
-                pinCodeUpdate.onSetClickNumber("0");
+                addNumber("0");
                 break;
         }
+    }
+
+    private void addNumber(String number){
+        toast = Toast.makeText(getApplicationContext(), number, Toast.LENGTH_SHORT);
+        toast.show();
+        pinCodeUpdate.onSetNumber(number);
+    }
+
+    public void installFont(TextView textView) {
+        customFont = Typeface.createFromAsset(getAssets(),  "fonts/Lato-Bold.ttf");
+        textView.setTypeface(customFont);
     }
 }

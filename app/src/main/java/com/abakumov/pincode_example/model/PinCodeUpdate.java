@@ -1,73 +1,52 @@
 package com.abakumov.pincode_example.model;
 
 import android.content.res.Resources;
-import android.os.Handler;
-import android.util.Log;
-
-import com.abakumov.pincode_example.R;
-import com.abakumov.pincode_example.asynctask.AsyncTaskVerification;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import com.abakumov.pincode_example.R;
+import com.abakumov.pincode_example.asynctask.AsyncTaskVerification;
+import com.abakumov.pincode_example.interfaces.PinCodeState;
 
-public class PinCodeUpdate implements  PinCodeState {
 
-    ArrayList<PinCodeModel> pinCodeModelArrayList;
-    ArrayList<String> arrayListPINcode =  new ArrayList<>();
-    Resources resources;
-    int count = 0;
+public class PinCodeUpdate implements PinCodeState {
 
 
     AsyncTaskVerification asyncTaskVerification;
 
-    public PinCodeUpdate(ArrayList<PinCodeModel> pinCodeModelArrayList, Resources resources) {
-        this.pinCodeModelArrayList = pinCodeModelArrayList;
+    LinearLayout linearLayout;
+    ArrayList<ImageView> listImageViews;
+    ArrayList<String> listPinCode =  new ArrayList<>();
+    Resources resources;
+    // counter for click Buttons
+    int countClick = 0;
+
+
+    public PinCodeUpdate(ArrayList<ImageView> listImageViews, Resources resources, LinearLayout linearLayout) {
+        this.listImageViews = listImageViews;
         this.resources = resources;
+        this.linearLayout = linearLayout;
     }
 
     @Override
-    public void onSetClickNumber(String number) {
-        arrayListPINcode.add(number);
-        count++;
-        if(count == 4){
-            pinCodeModelArrayList.get(count - 1).getImageView().setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
-            pinCodeModelArrayList.get(count - 1).setBooleanOnOff(true);
-            asyncTaskVerification = new AsyncTaskVerification(arrayListPINcode, pinCodeModelArrayList, resources);
+    public void onSetNumber(String number) {
+
+        // add number in list
+        listPinCode.add(number);
+        countClick++;
+
+        if(countClick == 4){
+            // if countClick = 4
+            // set image full in ImageView
+            // and start Verification for PIN-code
+            listImageViews.get(countClick - 1).setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
+            asyncTaskVerification = new AsyncTaskVerification(listPinCode, listImageViews, resources, countClick, linearLayout);
             asyncTaskVerification.execute();
-          /*  for (int i = 0; i < pinCodeModelArrayList.size(); i++) {
-                pinCodeModelArrayList.get(i).getImageView().setImageDrawable(resources.getDrawable(R.mipmap.oval));
-                pinCodeModelArrayList.get(i).setBooleanOnOff(false);
-            }*/
-          count = 0;
+            countClick = 0;
         }
         else {
-            pinCodeModelArrayList.get(count - 1).getImageView().setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
-            pinCodeModelArrayList.get(count - 1).setBooleanOnOff(true);
+            listImageViews.get(countClick - 1).setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
         }
     }
-
-  /*  private void setValues() {
-        Timer timer = new Timer();
-
-        timer.scheduleAtFixedRate(new TimerTask() {
-            //Random r = new Random();
-            @Override
-            public void run() {
-                //final   int a = r.nextInt((100-10)+1)+10;
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Log.i("Info", "Value: " + String.valueOf(a));
-                        //getCheckServer();
-                    }
-                });
-            }
-        }, 0, 3000); // 1000*60*60 - 1 час
-    }
-
-    private void runOnUiThread(Runnable runnable) {
-        handler.post(runnable);
-    }*/
 }
