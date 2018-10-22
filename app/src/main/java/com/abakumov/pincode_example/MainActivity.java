@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           listImageView.add(imageViewNum4);
 
           // send listImageView and resources(for animation)
-          pinCodeUpdate = new PinCodeUpdate(listImageView, resources, linearLayout);
+          pinCodeUpdate = new PinCodeUpdate(listImageView, resources, linearLayout, MainActivity.this);
     }
 
 
