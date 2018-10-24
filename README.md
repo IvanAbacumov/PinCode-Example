@@ -11,4 +11,4 @@ Can be applied to any banking app.
 * Custom UI and fonts
 
 
-![test](https://imgur.com/rSafSr7)
+![test](https://imgur.com/rSafSr7.gif)
