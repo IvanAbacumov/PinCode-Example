@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_0:
                 addNumber("0");
                 break;
+            case R.id.btn_delete:
+                addNumber("-1");
         }
     }
 

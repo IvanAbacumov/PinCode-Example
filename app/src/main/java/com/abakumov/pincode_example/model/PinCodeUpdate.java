@@ -37,21 +37,29 @@ public class PinCodeUpdate implements PinCodeState {
     @Override
     public void onSetNumber(String number) {
 
-        // add number in list
-        listPinCode.add(number);
-        countClick++;
+        if(!number.equals("-1")) {
+            // add number in list
+            listPinCode.add(number);
+            countClick++;
 
-        if(countClick == 4){
-            // if countClick = 4
-            // set image full in ImageView
-            // and start Verification for PIN-code
-            listImageViews.get(countClick - 1).setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
-            asyncTaskVerification = new AsyncTaskVerification(listPinCode, listImageViews, resources, countClick, linearLayout,context);
-            asyncTaskVerification.execute();
-            countClick = 0;
+            if (countClick == 4) {
+                // if countClick = 4
+                // set image full in ImageView
+                // and start Verification for PIN-code
+                listImageViews.get(countClick - 1).setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
+                asyncTaskVerification = new AsyncTaskVerification(listPinCode, listImageViews, resources, countClick, linearLayout, context);
+                asyncTaskVerification.execute();
+                countClick = 0;
+            } else {
+                listImageViews.get(countClick - 1).setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
+            }
         }
-        else {
-            listImageViews.get(countClick - 1).setImageDrawable(resources.getDrawable(R.mipmap.ovalfull));
+        else{
+            if(listPinCode.size() != 0){
+                listPinCode.remove(countClick-1);
+                listImageViews.get(countClick - 1).setImageDrawable(resources.getDrawable(R.mipmap.oval));
+                countClick--;
+            }
         }
     }
 }

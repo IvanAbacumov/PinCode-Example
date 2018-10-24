@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PinCode-Example</string>
+
+    <string name="logo">logotype</string>
+    <string name="pin">ПИН-код или Fingerprint</string>
+    <string name="forgot">Забыли ПИН-код?</string>
 </resources>
