@@ -12,7 +12,7 @@ import com.abakumov.pincode_example.interfaces.PinCodeState
 
 
 class PinCodeUpdate(private var listImageViews: ArrayList<ImageView>, // for get image
-                    private var resources: Resources, private var linearLayout: LinearLayout, internal var context: Context) : PinCodeState {
+                    private var resources: Resources, private var linearLayout: LinearLayout, private var context: Context) : PinCodeState {
 
 
     private lateinit var asyncTaskVerification: AsyncTaskVerification
@@ -31,17 +31,17 @@ class PinCodeUpdate(private var listImageViews: ArrayList<ImageView>, // for get
                 // if countClick = 4
                 // set image full in ImageView
                 // and start Verification for PIN-code
-                listImageViews[countClick - 1].setImageDrawable(resources.getDrawable(R.mipmap.ovalfull))
+                listImageViews[countClick - 1].setImageResource(R.mipmap.ovalfull)
                 asyncTaskVerification = AsyncTaskVerification(listPinCode, listImageViews, resources, countClick, linearLayout, context)
                 asyncTaskVerification.execute()
                 countClick = 0
             } else {
-                listImageViews[countClick - 1].setImageDrawable(resources.getDrawable(R.mipmap.ovalfull))
+                listImageViews[countClick - 1].setImageResource(R.mipmap.ovalfull)
             }
         } else {
             if (listPinCode.size != 0) {
                 listPinCode.removeAt(countClick - 1)
-                listImageViews[countClick - 1].setImageDrawable(resources.getDrawable(R.mipmap.oval))
+                listImageViews[countClick - 1].setImageResource(R.mipmap.oval)
                 countClick--
             }
         }

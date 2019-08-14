@@ -16,7 +16,7 @@ import java.util.ArrayList
 
 class AsyncTaskVerification(private var pinCodeModelList: ArrayList<String>, private var imageViewList: ArrayList<ImageView>, // for set image in ImageView
                             private var resources: Resources, // counter for Click, for clean state ImageView
-                            private var countClick: Int, private var linearLayout: LinearLayout, internal var context: Context) : AsyncTask<Void, Void, Boolean>() {
+                            private var countClick: Int, private var linearLayout: LinearLayout, private var context: Context) : AsyncTask<Void, Void, Boolean>() {
     // param for verification(successful or unsuccessful)
     private var verificationOnOff: Boolean? = null
     // successful verification if pin-code = 1111
@@ -69,7 +69,7 @@ class AsyncTaskVerification(private var pinCodeModelList: ArrayList<String>, pri
     private fun getImageOval() {
 
         for (i in 0 until countClick) {
-            imageViewList[i].setImageDrawable(resources.getDrawable(R.mipmap.oval))
+            imageViewList[i].setImageResource(R.mipmap.oval)
         }
         pinCodeModelList.clear()
     }

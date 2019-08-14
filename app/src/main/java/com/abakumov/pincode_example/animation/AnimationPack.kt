@@ -13,7 +13,7 @@ class AnimationPack(private var linearLayout: LinearLayout) {
     private lateinit var springForce: SpringForce
 
     fun startSpringAnimation() {
-        springAnimation = androidx.dynamicanimation.animation.SpringAnimation(linearLayout, DynamicAnimation.X)
+        springAnimation = SpringAnimation(linearLayout, DynamicAnimation.X)
         springForce = SpringForce()
 
 

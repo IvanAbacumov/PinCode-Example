@@ -72,8 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
     override fun onClick(v: View) {
-        val id = v.id
-        when (id) {
+        when (v.id) {
             R.id.btn_1 -> addNumber("1")
             R.id.btn_2 -> addNumber("2")
             R.id.btn_3 -> addNumber("3")
